@@ -13,15 +13,6 @@ LOG = create_logger(APP)
 LOG.setLevel(logging.INFO)
 
 
-@APP.route("/")
-def home():
-    """
-    high level support for doing this and that.
-    """
-    html = f"<h3>Dummy Prediction</h3>"
-    return html.format(format)
-
-
 @APP.route("/predict", methods=["POST"])
 def predict():
     """
