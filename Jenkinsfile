@@ -1,7 +1,7 @@
 pipeline {
      agent any
      stages {
-         stage('Requirement') {
+         stage('Requirement install') {
               steps {
                   sh 'echo "Install requirements.txt"'
                   sh 'make install'
