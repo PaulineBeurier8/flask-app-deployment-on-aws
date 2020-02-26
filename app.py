@@ -1,21 +1,28 @@
-from flask import Flask, request, jsonify, make_response
-from flask.logging import create_logger
-import logging
+"""
+high level support for doing this and that.
+"""
 
 from typing import Iterable
+import logging
+from flask import Flask, request, jsonify, make_response
+from flask.logging import create_logger
 
-app = Flask(__name__)
-LOG = create_logger(app)
+
+APP = Flask(__name__)
+LOG = create_logger(APP)
 LOG.setLevel(logging.INFO)
 
 
-@app.route("/")
+@APP.route("/")
 def home():
+    """
+    high level support for doing this and that.
+    """
     html = f"<h3>Dummy Prediction</h3>"
     return html.format(format)
 
 
-@app.route("/predict", methods=["POST"])
+@APP.route("/predict", methods=["POST"])
 def predict():
     """
     curl http://localhost:5000/score \
@@ -26,7 +33,7 @@ def predict():
 
     # Logging the input payload
     json_payload = request.json
-    LOG.info(f"JSON payload: \n{json_payload}")
+    LOG.info("JSON payload: \n%s", json_payload)
 
     try:
         features = request.json["X"]
@@ -36,10 +43,10 @@ def predict():
         raise RuntimeError('"X" cannot be be found in JSON payload.')
 
 
-def model_predict(x: Iterable[float]) -> Iterable[float]:
+def model_predict(my_list: Iterable[float]) -> Iterable[float]:
     """Dummy prediction function."""
-    return x
+    return my_list
 
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80, debug=True)  # specify port=80
+    APP.run(host="0.0.0.0", port=80, debug=True)  # specify port=80

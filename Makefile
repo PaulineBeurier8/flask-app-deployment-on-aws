@@ -4,9 +4,4 @@ install:
 
 
 lint:
-	@black --check app.py
-
-fmt:
-	@black app.py
-
-format: fmt
+	pylint app.py
