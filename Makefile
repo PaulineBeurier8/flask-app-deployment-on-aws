@@ -4,9 +4,9 @@ install:
 
 
 lint:
-	pylint -E app.py
+	@black --check app.py
 
 fmt:
-	pylint -E app.py
+	@black app.py
 
 format: fmt
