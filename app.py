@@ -2,7 +2,6 @@
 high level support for doing this and that.
 """
 
-from typing import Iterable
 import logging
 from flask import Flask, request, jsonify, make_response
 from flask.logging import create_logger
@@ -28,15 +27,9 @@ def predict():
 
     try:
         features = request.json["X"]
-        prediction = model_predict(features)
-        return make_response(jsonify({"json prediction content": prediction}))
+        return make_response(jsonify({"json prediction content": features}))
     except KeyError:
         raise RuntimeError('"X" cannot be be found in JSON payload.')
-
-
-def model_predict(my_list: Iterable[float]) -> Iterable[float]:
-    """Dummy prediction function."""
-    return my_list
 
 
 if __name__ == "__main__":
