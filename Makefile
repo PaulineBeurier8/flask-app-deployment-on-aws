@@ -3,5 +3,5 @@ install:
 		pip3 install -r requirements.txt
 
 
-lint:
-	pylint app.py
+fmt:
+	tidy -q -e *.html

@@ -1,14 +1,9 @@
+FROM ubuntu
 
-FROM python:3.7.3-stretch
-
-WORKDIR /app
-COPY . app.py /app/
-
-# hadolint ignore=DL3013
-RUN pip install --upgrade pip &&\
-    pip install --trusted-host pypi.python.org -r requirements.txt
+COPY index.html /var/www/html/
+RUN apt-get update
+RUN apt-get install nginx -y
 
 EXPOSE 80
 
-
-CMD ["python", "app.py"]
+CMD ["nginx","-g","daemon off;"]
