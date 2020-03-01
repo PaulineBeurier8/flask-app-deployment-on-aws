@@ -9,7 +9,7 @@ pipeline {
          stage('Build') {
              steps {
                 sh 'echo "Docker build app"'
-                sh "docker build --tag pauline08/flask-app-deployment-on-aws:latest ."
+                sh "docker build --tag flask-app-deployment ."
              }
          }
          stage('Push') {
@@ -17,7 +17,7 @@ pipeline {
                 sh 'echo "Docker push on ECR"'
                 script {
                   docker.withRegistry('https://501235109294.dkr.ecr.us-east-1.amazonaws.com', 'ecr:us-east-1:MyCredentials') {
-                    docker.image("pauline08/flask-app-deployment-on-aws:latest").push()
+                    docker.image("flask-app-deployment").push()
                   }
                 }
             }
